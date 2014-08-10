@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Hjælpe</title>
+    <link rel="stylesheet" href="css/framework7.min.css">
+    <link rel="stylesheet" href="css/style.css">
+      <!-- Favicon-->
+      <link href="img/icon-57.png" rel="shortcut icon">
+      <!-- iOS 7 iPad (retina) -->
+      <link href="img/icon-152.png" sizes="152x152" rel="apple-touch-icon">
+      <!-- iOS 6 iPad (retina) -->
+      <link href="img/icon-144.png" sizes="144x144" rel="apple-touch-icon">
+      <!-- iOS 7 iPhone (retina) -->
+      <link href="img/icon-120.png" sizes="120x120" rel="apple-touch-icon">
+      <!-- iOS 6 iPhone (retina) -->
+      <link href="img/icon-114.png" sizes="114x114" rel="apple-touch-icon">
+      <!-- iOS 7 iPad -->
+      <link href="img/icon-76.png" sizes="76x76" rel="apple-touch-icon">
+      <!-- iOS 6 iPad -->
+      <link href="img/icon-72.png" sizes="72x72" rel="apple-touch-icon">
+      <!-- iOS 6 iPhone -->
+      <link href="img/icon-57.png" sizes="57x57" rel="apple-touch-icon">
+  </head>
+  <body>
+    <div class="statusbar-overlay"></div>
+
+    <div class="views">
+      <div class="view view-main">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center sliding">Hjælpe</div>
+            <div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars-white"></i></a></div>
+          </div>
+        </div>
+
+        <div class="pages navbar-through toolbar-through">
+          <div data-page="index" class="page">
+            <div class="page-content">
+                <form data-search-in=".item-title" class="searchbar" id="searchBar">
+                    <div class="searchbar-input">
+                        <input type="search" placeholder="Search"/><a href="#" class="searchbar-clear"></a>
+                    </div><a href="#" class="searchbar-cancel" id="searchCancel">Cancel</a>
+                </form>
+              <div class="content-block-title" id="mainMessage">Welcome To Hjælpe!</div>
+
+              <div class="list-block media-list"><ul id="hjaelpeList"></ul></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script id="mediaTemplate" type="text/x-handlebars">
+        <li>
+            <a href="business.html" class="item-link item-content" onclick="curId = '{{id}}'">
+            <div class="item-media">
+                <img src="{{image}}" width="80"/>
+            </div>
+            <div class="item-inner">
+                <div class="item-title-row">
+                    <div class="item-title">{{name}}</div>
+                    <div class="item-after">{{open}}</div>
+                </div>
+                <div class="item-subtitle">
+                    <img src="{{rating}}">
+                </div>
+                <div class="item-text">{{text}}</div>
+            </div>
+            </a>
+        </li>
+    </script>
+
+
+    <script type="text/x-handlebars" id="businessTemplate">
+        <div class="row">
+            <div class="col-100">
+                <div class="row" style="padding:16px">
+                    <div style="display:inline-block;min-width:60%;vertical-align:top;background-color:#fff;border:1px solid #ccc;height:280px">
+                        <div style="text-align:center;width:120px;display:inline-block;vertical-align:top;padding:10px">
+                            <div style="background-color:#fff;border:1px solid #ccc;padding:5px;">
+                                <img src="{{image}}" style="position:relative;top:3px">
+                            </div>
+                            <img src="{{rating}}" style="padding-top:5px">
+                        </div>
+                        <div style="display:inline-block;vertical-align:top;padding:0 7px;min-width:280px">
+                            <p style="float:right"><strong>{{open}}</strong></p>
+                            <p><strong>{{name}}</strong></p>
+                            <p><strong>Categories:</strong> {{cats}}</p>
+                            <p><strong>Phone:</strong> <a href="tel:{{phone}}">{{phone}}</a></p>
+                            <p><strong>Address:</strong> {{address}}</p>
+
+                        </div>
+                        <div style="max-width:436px;padding:5px">
+                            <hr>
+                            {{text}}
+                        </div>
+                    </div>
+                    <div style="display:inline-block;width:265px;margin-left:5px;vertical-align:top;padding:5px;border:1px solid #ccc;background-color:#fff;position:relative">
+                        <a id="mapsLink">
+                            <img id="map" style="width:265px">
+                            <img src="img/marker.png" style="position:absolute;width:48px;top:92px;left:114px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row"><div class="col-100" id="reviews" style="padding:16px"></div></div>
+    </script>
+    <script type="text/x-handlebars" id="reviewTemplate">
+        <div class="row">
+            <div class="col-100" style="background-color:#fff;padding:10px;border:1px solid #ccc">
+                <div style="text-align:center;width:120px;display:inline-block;vertical-align:top;padding:10px">
+                    <div style="background-color:#fff;border:1px solid #ccc;padding:5px;">
+                        <img src="{{image}}" style="position:relative;top:3px">
+                    </div>
+                    <p><strong>{{name}}</strong></p>
+                </div>
+                <div style="max-width:80%;display:inline-block">
+                    <p><img src="{{rating}}"> on {{date}}</p>
+                    <p>{{text}}</p>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+  </body>
+</html>
